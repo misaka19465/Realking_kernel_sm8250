@@ -21,6 +21,14 @@
 #include <asm/tlbflush.h>
 
 #ifdef CONFIG_HAVE_RCU_TABLE_FREE
+
+void tlb_remove_table_sync_one(void);
+
+#else
+
+static inline void tlb_remove_table_sync_one(void) { }
+
+#endif
 /*
  * Semi RCU freeing of the page directories.
  *
@@ -61,7 +69,6 @@ struct mmu_table_batch {
 extern void tlb_table_flush(struct mmu_gather *tlb);
 extern void tlb_remove_table(struct mmu_gather *tlb, void *table);
 
-#endif
 
 /*
  * If we can't allocate a page to make a big batch of page pointers
