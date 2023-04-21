@@ -46,7 +46,7 @@ mkdir -p tmp
 cp -fp $ZIMAGE_DIR/Image.gz tmp
 cp -fp $ZIMAGE_DIR/dtbo.img tmp
 cp -fp $ZIMAGE_DIR/dtb tmp
-cp -rp ./anykernel/* tmp
+cp -rp ./alioth-tools/* tmp
 cd tmp
 7za a -mx9 tmp.zip *
 cd ..
