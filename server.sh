@@ -1,7 +1,7 @@
 #!/bin/bash
 #set -e
 ## Copy this script inside the kernel directory
-KERNEL_DEFCONFIG=vendor/munch_defconfig
+KERNEL_DEFCONFIG=vendor/alioth_defconfig
 DIR=`readlink -f .`
 MAIN=`readlink -f ${DIR}/..`
 export PATH="$MAIN/clang/bin:$PATH"
@@ -27,6 +27,9 @@ yellow='\033[0;33m'
 red='\033[0;31m'
 nocol='\033[0m'
 
+# kernel-SU add
+curl -LSs "https://raw.githubusercontent.com/tiann/KernelSU/main/kernel/setup.sh" | bash -
+
 echo "**** Kernel defconfig is set to $KERNEL_DEFCONFIG ****"
 echo -e "$blue***********************************************"
 echo "          BUILDING KERNEL          "
@@ -50,6 +53,11 @@ cd tmp
 7za a -mx9 tmp.zip *
 cd ..
 rm *.zip
-cp -fp tmp/tmp.zip RealKing-Munch-MiUi-$TIME.zip
+cp -fp tmp/tmp.zip RealKing-MiUi-$TIME.zip
 rm -rf tmp
 echo $TIME
+
+# Kernel-SU remove
+git checkout drivers/Makefile &>/dev/null
+rm -rf KernelSU
+rm -rf drivers/kernelsu
