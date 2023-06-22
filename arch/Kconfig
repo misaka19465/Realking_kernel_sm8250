@@ -1015,6 +1015,13 @@ config RELR
 	  well as compatible NM and OBJCOPY utilities (llvm-nm and llvm-objcopy
 	  are compatible).
 
+	  
+config FORCE_MQ_FRAMEWORK
+	bool "Force kernel to use mq framework"
+	default n
+	help
+	  This option forces kernel to use mq framework.
+
 source "kernel/gcov/Kconfig"
 
 source "scripts/gcc-plugins/Kconfig"
