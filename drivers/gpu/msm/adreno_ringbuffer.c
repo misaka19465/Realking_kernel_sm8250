@@ -1077,7 +1077,7 @@ int adreno_ringbuffer_submitcmd(struct adreno_device *adreno_dev,
 	if (dwords <= ARRAY_SIZE(link_onstack)) {
 		link = link_onstack;
 	} else {
-		link = kvcalloc(dwords, sizeof(unsigned int), GFP_KERNEL);
+		link = kcalloc(dwords, sizeof(unsigned int), GFP_KERNEL);
 		if (!link) {
 			ret = -ENOMEM;
 			goto done;
@@ -1212,7 +1212,7 @@ done:
 			drawobj->flags, ret, drawctxt->type);
 
 	if (link != link_onstack)
-		kvfree(link);
+	        kfree(link);
 	return ret;
 }
 
