@@ -834,7 +834,6 @@ static int _disp_log_stats_v2(struct tzdbg_log_v2_t *log,
 		if (t != 0) {
 			/* Some event woke us up, so let's quit */
 			return 0;
->>>>>>> 9139a931d638719d7d995fe6cfd1e9cbd2b58ae2
 		}
 	} else {
 		while (log_start->offset == log->log_pos.offset) {
