@@ -4749,14 +4749,13 @@ static int sde_crtc_onscreenfinger_atomic_check(struct sde_crtc_state *cstate,
 			pstates[i].sde_pstate->is_skip = false;
 	}
 
-	if (!is_dsi_panel(cstate->base.crtc))
-		return 0;
-
 	if (fppressed_index > 0 || fp_mode == 1) {
 		cpu_input_boost_kick_max(500);
 		devfreq_boost_kick_max(DEVFREQ_CPU_LLCC_DDR_BW, 500);
-		devfreq_boost_kick_max(DEVFREQ_CPU_CPU_LLCC_BW, 500);
 	}
+
+	if (!is_dsi_panel(cstate->base.crtc))
+		return 0;
 
 	if (oplus_dimlayer_bl_enable) {
 		int backlight = oplus_get_panel_brightness();
